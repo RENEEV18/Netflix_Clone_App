@@ -8,17 +8,13 @@ import 'package:netflix_app/presentation/widgets/video_widget.dart';
 class ComingSoonWidget extends StatelessWidget {
   const ComingSoonWidget({
     Key? key,
-   
   }) : super(key: key);
-
- 
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Row(
       children: [
-      
         SizedBox(
           width: 50,
           height: 450,
@@ -48,7 +44,7 @@ class ComingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            const  VideoWidget(),
+              const VideoWidget(),
               Row(
                 children: [
                   Text(
@@ -90,8 +86,10 @@ class ComingSoonWidget extends StatelessWidget {
                     color: kWhiteColor),
               ),
               kHeight,
-              const Text("Landing the lead in the school musical is a dream come true for Jodi , untill the pressure sends her confidence - and her relationship - into a tailspin ",
-              style: TextStyle(color: kGreyColor),)
+              const Text(
+                "Landing the lead in the school musical is a dream come true for Jodi , untill the pressure sends her confidence - and her relationship - into a tailspin ",
+                style: TextStyle(color: kGreyColor),
+              )
             ],
           ),
         ),
@@ -99,4 +97,3 @@ class ComingSoonWidget extends StatelessWidget {
     );
   }
 }
-

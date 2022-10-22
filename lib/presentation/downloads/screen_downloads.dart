@@ -91,7 +91,7 @@ class Section2 extends StatelessWidget {
                           margin: const EdgeInsets.only(right: 170, top: 40),
                           angle: -20,
                           size: Size(size.width * 0.35, size.width * 0.55),
-                         // radius: 30,
+                       
                         ),
                         DownloadsImageWidget(
                           imageLst:

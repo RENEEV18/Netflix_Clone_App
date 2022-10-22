@@ -58,7 +58,7 @@ class ScreenHome extends StatelessWidget {
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
-                    duration: const Duration(milliseconds: 2000),
+                      duration: const Duration(milliseconds: 2000),
                       width: double.infinity,
                       height: 90,
                       color: Colors.black.withOpacity(0.5),
@@ -68,7 +68,8 @@ class ScreenHome extends StatelessWidget {
                             children: [
                               const CircleAvatar(
                                 radius: 30,
-                                backgroundImage: NetworkImage('https://cdn.vox-cdn.com/thumbor/KNlt4WzgRBrvNHS3ULQu595AL5s=/0x0:3840x2560/1200x800/filters:focal(1613x973:2227x1587)/cdn.vox-cdn.com/uploads/chorus_image/image/66267583/netflix_n_icon_logo_3840.0.jpg'),
+                                backgroundImage: NetworkImage(
+                                    'https://cdn.vox-cdn.com/thumbor/KNlt4WzgRBrvNHS3ULQu595AL5s=/0x0:3840x2560/1200x800/filters:focal(1613x973:2227x1587)/cdn.vox-cdn.com/uploads/chorus_image/image/66267583/netflix_n_icon_logo_3840.0.jpg'),
                               ),
                               const Spacer(),
                               const Icon(
@@ -86,11 +87,11 @@ class ScreenHome extends StatelessWidget {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: const [
-                              Text('TV Shows',style: kHomeTitleText),
-                              Text('Movies',style: kHomeTitleText),
-                              Text('Categories',style: kHomeTitleText),
+                              Text('TV Shows', style: kHomeTitleText),
+                              Text('Movies', style: kHomeTitleText),
+                              Text('Categories', style: kHomeTitleText),
                             ],
                           ),
                         ],

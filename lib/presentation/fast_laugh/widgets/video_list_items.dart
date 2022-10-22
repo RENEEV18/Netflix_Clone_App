@@ -24,7 +24,12 @@ class VideoListItems extends StatelessWidget {
                   radius: 25,
                   backgroundColor: Colors.black.withOpacity(0.5),
                   child: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.volume_off,color: kWhiteColor,size: 30,)),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.volume_off,
+                        color: kWhiteColor,
+                        size: 30,
+                      )),
                 ),
 
                 //right side
@@ -36,7 +41,8 @@ class VideoListItems extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
                         radius: 25,
-                        backgroundImage: NetworkImage('https://www.cinematerial.com/media/box-office/15474916.jpg'),
+                        backgroundImage: NetworkImage(
+                            'https://www.cinematerial.com/media/box-office/15474916.jpg'),
                       ),
                     ),
                     VedioActionsWidget(
@@ -64,7 +70,7 @@ class VedioActionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       child: Column(
         children: [
           Icon(
