@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix_app/core/colors/colors.dart';
 import 'package:netflix_app/core/constants.dart';
-import 'package:netflix_app/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflix_app/presentation/new_and_hot.dart/widgets/everyones_watching_widget.dart';
-import 'package:netflix_app/presentation/widgets/video_widget.dart';
+
 
 import 'widgets/coming_soon_widget.dart';
 
@@ -24,7 +22,7 @@ class ScreenNewAndHot extends StatelessWidget {
               style: TextStyle(
                   color: kWhiteColor,
                   fontSize: 22,
-                  fontWeight: FontWeight.w900),
+                  fontWeight: FontWeight.bold),
             ),
             actions: [
               const Icon(
@@ -65,10 +63,13 @@ class ScreenNewAndHot extends StatelessWidget {
                 ]),
           ),
         ),
-        body: TabBarView(children: [
-          _buildComingSoon(),
-          _buildEveryonesWatching(),
-        ]),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: TabBarView(children: [
+            _buildComingSoon(),
+            _buildEveryonesWatching(),
+          ]),
+        ),
       ),
     );
   }

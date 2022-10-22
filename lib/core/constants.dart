@@ -15,6 +15,8 @@ final  BorderRadius kRadius30 = BorderRadius.circular(30);
 
 
 //Images
+ 
+const imageAppendUrl = "https://image.tmdb.org/t/p/w500";
 
 const kMainImage = "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/606fb185704695.5d839320426c7.png";
 const newAndHotTempImage="https://imgs.search.brave.com/3WBm0QXX_OHQNf8XC-WoIeeFVGCXpJg7GUl73SZj7xM/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/dXAubmV0L3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE5LzA5LzEy/ODI3OS1lcGljLW1v/dmllLXBvc3Rlci1m/YW50YXN5LmpwZw";
