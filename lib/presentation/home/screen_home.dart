@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_app/application/home_bloc/home_bloc.dart';
 import 'package:netflix_app/core/colors/colors.dart';
 import 'package:netflix_app/core/constants.dart';
 import 'package:netflix_app/presentation/home/widgets/background_card.dart';
@@ -13,6 +15,9 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      BlocProvider.of<HomeBloc>(context).add(const GetHomeScreenData());
+    });
     return Scaffold(
         body: SafeArea(
             child: ValueListenableBuilder(
@@ -30,31 +35,90 @@ class ScreenHome extends StatelessWidget {
           },
           child: Stack(
             children: [
-              SingleChildScrollView(
-                child: Column(
-                  children: const [
-                    BackgroundCard(),
-                    kHeight,
-                    MainTitleCard(
-                      title: 'Released in the past year',
+              BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    );
+                  } else if (state.hasError) {
+                    return const Center(
+                      child: Text(
+                        'Error while getting data',
+                        style: TextStyle(color: kWhiteColor),
+                      ),
+                    );
+                  }
+                  // released past year
+                  final _releasedPastYear = state.pastYearMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _releasedPastYear.shuffle();
+
+                  // trending
+                  final _trending = state.trendingMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _trending.shuffle();
+                  // tense dramas
+                  final _tenseDramas = state.tenseDramaMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  // south indian movies
+                  _tenseDramas.shuffle();
+                  final _southIndianMovies =
+                      state.southIndianMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _southIndianMovies.shuffle();
+
+                  //top 10 tv shows
+
+                  final _top10TvShows = state.southIndianMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _top10TvShows.shuffle();
+
+                  return SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const BackgroundCard(),
+                        kHeight,
+                        if (_releasedPastYear.length >= 10)
+                          MainTitleCard(
+                            title: 'Released in the past year',
+                            posterList: _releasedPastYear.sublist(0, 10),
+                          ),
+                        kHeight,
+                        if (_trending.length >= 10)
+                          MainTitleCard(
+                            title: 'Trending Now',
+                            posterList: _trending.sublist(0, 10),
+                          ),
+                        kHeight,
+                        NumberTitleCard(
+                          posterList: _top10TvShows,
+                        ),
+                        kHeight,
+                        if (_tenseDramas.length >= 10)
+                          MainTitleCard(
+                            title: 'Tense Dramas',
+                            posterList: _tenseDramas.sublist(0, 10),
+                          ),
+                        kHeight,
+                        if (_southIndianMovies.length >= 10)
+                          MainTitleCard(
+                            title: 'South Indian Cinema',
+                            posterList: _southIndianMovies.sublist(0, 10),
+                          ),
+                        kHeight,
+                      ],
                     ),
-                    kHeight,
-                    MainTitleCard(
-                      title: 'Trending Now',
-                    ),
-                    kHeight,
-                    NumberTitleCard(),
-                    kHeight,
-                    MainTitleCard(
-                      title: 'Tense Dramas',
-                    ),
-                    kHeight,
-                    MainTitleCard(
-                      title: 'South Indian Cinema',
-                    ),
-                    kHeight,
-                  ],
-                ),
+                  );
+                },
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
@@ -65,23 +129,33 @@ class ScreenHome extends StatelessWidget {
                       child: Column(
                         children: [
                           Row(
-                            children: [
-                              const CircleAvatar(
-                                radius: 30,
-                                backgroundImage: NetworkImage(
-                                    'https://cdn.vox-cdn.com/thumbor/KNlt4WzgRBrvNHS3ULQu595AL5s=/0x0:3840x2560/1200x800/filters:focal(1613x973:2227x1587)/cdn.vox-cdn.com/uploads/chorus_image/image/66267583/netflix_n_icon_logo_3840.0.jpg'),
-                              ),
-                              const Spacer(),
-                              const Icon(
+                            children: const [
+                              SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image(
+                                    image: NetworkImage(
+                                        'https://pngimg.com/uploads/netflix/netflix_PNG10.png'),
+                                  )),
+                              // const CircleAvatar(
+                              //   radius: 30,
+                              //   backgroundImage: NetworkImage(
+                              //       'https://pngimg.com/uploads/netflix/netflix_PNG10.png'),
+                              // ),
+                              Spacer(),
+                              Icon(
                                 Icons.cast,
                                 color: kWhiteColor,
                                 size: 30,
                               ),
                               kWidth,
-                              Container(
+                              SizedBox(
                                 height: 30,
                                 width: 30,
-                                color: Colors.blue,
+                                child: Image(
+                                  image: NetworkImage(
+                                      'https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png'),
+                                ),
                               ),
                               kWidth,
                             ],
