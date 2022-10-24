@@ -8,10 +8,9 @@ class FastLaughState with _$FastLaughState {
     required bool isError,
   }) = _Initial;
 
-  factory FastLaughState.initial() =>  const FastLaughState(
+  factory FastLaughState.initial() => const FastLaughState(
         videosList: [],
         isLoading: true,
-        isError: false, 
-        
+        isError: false,
       );
 }

@@ -64,10 +64,9 @@ class Section2 extends StatelessWidget {
         ),
         kHeight,
         BlocBuilder<DownloadsBloc, DownloadsState>(
-          
           builder: (context, state) {
             return SizedBox(
-              width: size.width ,
+              width: size.width,
               height: size.height * 0.45,
               child: state.isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -91,7 +90,6 @@ class Section2 extends StatelessWidget {
                           margin: const EdgeInsets.only(right: 170, top: 40),
                           angle: -20,
                           size: Size(size.width * 0.35, size.width * 0.55),
-                       
                         ),
                         DownloadsImageWidget(
                           imageLst:

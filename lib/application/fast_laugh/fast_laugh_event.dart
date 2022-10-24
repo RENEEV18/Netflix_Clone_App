@@ -8,6 +8,6 @@ class FastLaughEvent with _$FastLaughEvent {
     required int id,
   }) = LikeVedio;
   const factory FastLaughEvent.unlikeVedio({
-     required int id,
+    required int id,
   }) = UnlikeVedio;
 }

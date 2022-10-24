@@ -4,7 +4,6 @@ import 'package:netflix_app/application/search/search_bloc.dart';
 import 'package:netflix_app/core/constants.dart';
 import 'package:netflix_app/presentation/search/widget/title.dart';
 
-
 class SearchResultWidget extends StatelessWidget {
   const SearchResultWidget({super.key});
 

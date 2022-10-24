@@ -46,7 +46,9 @@ class ScreenFastLaugh extends StatelessWidget {
                   return VideoListItemInheritedWidget(
                     widget: VideoListItems(
                       index: index,
-                      key: Key(index.toString(),),
+                      key: Key(
+                        index.toString(),
+                      ),
                     ),
                     movieData: state.videosList[index],
                   );

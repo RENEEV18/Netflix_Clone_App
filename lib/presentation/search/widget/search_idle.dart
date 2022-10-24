@@ -20,18 +20,24 @@ class SearchIdleWidget extends StatelessWidget {
         Expanded(
           child: BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
-              if(state.isLoading){
-                return const Center(child: CircularProgressIndicator(),);
-              }else if(state.isError){
-                 return const Center(child:Text("Error while getting data"));
-              } else if(state.idleList.isEmpty){
-                 return const Center(child:Text("List is empty") ,);
+              if (state.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.isError) {
+                return const Center(child: Text("Error while getting data"));
+              } else if (state.idleList.isEmpty) {
+                return const Center(
+                  child: Text("List is empty"),
+                );
               }
               return ListView.separated(
                   shrinkWrap: true,
-                  itemBuilder: (ctx, index){
+                  itemBuilder: (ctx, index) {
                     final movie = state.idleList[index];
-                    return TopSearchItemTile(title: movie.title??"No title provided", imageUrl:"$imageAppendUrl${movie.posterPath}");
+                    return TopSearchItemTile(
+                        title: movie.title ?? "No title provided",
+                        imageUrl: "$imageAppendUrl${movie.posterPath}");
                   },
                   separatorBuilder: (ctx, index) => kHeight20,
                   itemCount: state.idleList.length);
@@ -46,7 +52,8 @@ class SearchIdleWidget extends StatelessWidget {
 class TopSearchItemTile extends StatelessWidget {
   final String title;
   final String imageUrl;
-  const TopSearchItemTile({super.key, required this.title, required this.imageUrl});
+  const TopSearchItemTile(
+      {super.key, required this.title, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +63,15 @@ class TopSearchItemTile extends StatelessWidget {
         Container(
           width: screenWidth * 0.35,
           height: 70,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(
-                 imageUrl),
+              image: NetworkImage(imageUrl),
             ),
           ),
         ),
         kWidth,
-         Expanded(
+        Expanded(
           child: Text(
             title,
             style: const TextStyle(
